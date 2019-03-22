@@ -12,7 +12,7 @@ class ItemAdapter(private val layoutInflater: LayoutInflater) : RecyclerView.Ada
 
     private val VIEW_TYPE_ITEM = 0
 
-    var items: List<Item> = emptyList()
+    var items: List<Item> = mutableListOf()
 
     override fun getItemViewType(position: Int): Int = when (items[position]) {
         is Item -> VIEW_TYPE_ITEM
