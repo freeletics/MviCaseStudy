@@ -17,16 +17,17 @@ class MainActivity : AppCompatActivity() {
         recyclerView.adapter = adapter
 
         val listener = object : RecyclerView.OnScrollListener() {
-            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+            override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)
 
-                val endReached = !recyclerView!!.canScrollVertically(1)
-                Log.d("RecyclerView", "" Scroll changed: $endReached")
+                val endReached = !recyclerView.canScrollVertically(1)
+                Log.d("RecyclerView",  "Scrollchanged: $endReached")
                 if (endReached) {
                     onEndOfRecyclerViewReached()
                 }
             }
         }
+        recyclerView.addOnScrollListener(listener)
     }
 
     /**
