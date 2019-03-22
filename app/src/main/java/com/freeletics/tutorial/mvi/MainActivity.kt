@@ -2,6 +2,8 @@ package com.freeletics.tutorial.mvi
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
@@ -13,5 +15,23 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         adapter = ItemAdapter(layoutInflater)
         recyclerView.adapter = adapter
+
+        val listener = object : RecyclerView.OnScrollListener() {
+            override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+                super.onScrollStateChanged(recyclerView, newState)
+
+                val endReached = !recyclerView!!.canScrollVertically(1)
+                Log.d("RecyclerView", "" Scroll changed: $endReached")
+                if (endReached) {
+                    onEndOfRecyclerViewReached()
+                }
+            }
+        }
+    }
+
+    /**
+     * RecyclerView reached the end of the list. User scrolled to the end of the list.
+     */
+    private fun onEndOfRecyclerViewReached() {
     }
 }
