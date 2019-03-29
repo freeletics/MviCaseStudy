@@ -60,6 +60,10 @@ class MainActivity : AppCompatActivity() {
                 applyNewData(it.items)
             }
             is State.Loading -> loading.show()
+            is State.LoadingNext -> {
+                loading.show()
+                applyNewData(it.items)
+            }
             is State.InitialError -> {
                 recyclerView.gone()
                 error.show()
